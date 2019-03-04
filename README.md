@@ -1,5 +1,6 @@
 # Vertical Slider for Android
-
+ [ ![Download](https://api.bintray.com/packages/2hamed/maven/VerticalSlider/images/download.svg) ](https://bintray.com/2hamed/maven/VerticalSlider/_latestVersion) 
+ 
 Have you ever seen those sleek volume and light sliders for iOS? Well here they are for Android as an extremely lightweight library.
 
 ![Showcase](showcase.gif)

@@ -1,7 +1,33 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-android'
+apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'com.jfrog.bintray'
 
+ext {
+    bintrayRepo = 'maven'
+    bintrayName = 'VerticalSlider'
+
+    publishedGroupId = 'com.hmomeni.verticalslider'
+    libraryName = 'VerticalSlider'
+    artifact = 'verticalslider'
+
+    libraryDescription = 'VerticalSlider is vertical seekbar like that of iOS\'s volume slider with different state indicators (icons).'
+
+    siteUrl = 'https://github.com/2hamed/VerticalSlider'
+    gitUrl = 'https://github.com/2hamed/VerticalSlider.git'
+
+    libraryVersion = '0.1.3'
+    libraryVersionCode = 4
+
+    developerId = '2hamed'
+    developerName = 'Hamed Momeni'
+    developerEmail = 'hamed.ma7@gmail.com'
+
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
+}
 android {
     compileSdkVersion 28
 
@@ -11,7 +37,7 @@ android {
         minSdkVersion 16
         targetSdkVersion 28
         versionCode 1
-        versionName "1.0"
+        versionName "0.1"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
@@ -38,3 +64,16 @@ dependencies {
 repositories {
     mavenCentral()
 }
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.github.dcendents:android-maven-gradle-plugin:1.4.1'
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7.3'
+    }
+}
+apply from: './install.gradle'
+
+// ./gradle clean build install
+// ./gradle bintrayUpload

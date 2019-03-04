@@ -6,6 +6,13 @@ Have you ever seen those sleek volume and light sliders for iOS? Well here they 
 
 It allows to set 3 different icons for different states of the slide: low, medium and high.
 
+## Usage
+As always it is available through jCenter:
+
+```groovy
+implementation 'com.hmomeni.verticalslider:verticalslider:0.1.3'
+```
+
 You can set them both in xml or code:
 
 ```xml

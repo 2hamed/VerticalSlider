@@ -1,6 +1,9 @@
 # Vertical Slider for Android
 
 Have you ever seen those sleek volume and light sliders for iOS? Well here they are for Android as an extremely lightweight library.
+
+![Showcase](showcase.gif)
+
 It allows to set 3 different icons for different states of the slide: low, medium and high.
 
 You can set them both in xml or code:

@@ -11,7 +11,7 @@ It allows to set 3 different icons for different states of the slide: low, mediu
 As always it is available through jCenter:
 
 ```groovy
-implementation 'com.hmomeni.verticalslider:verticalslider:0.1.3'
+implementation 'com.hmomeni.verticalslider:verticalslider:0.1.4'
 ```
 
 You can set them both in xml or code:

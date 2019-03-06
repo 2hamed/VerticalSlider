@@ -1,10 +1,13 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-android'
-apply plugin: 'com.github.dcendents.android-maven'
-apply plugin: 'com.jfrog.bintray'
 
 ext {
+
+    PUBLISH_GROUP_ID = 'com.hmomeni.verticalslider'
+    PUBLISH_ARTIFACT_ID = 'verticalslider'
+    PUBLISH_VERSION = '0.1.4'
+
     bintrayRepo = 'maven'
     bintrayName = 'VerticalSlider'
 
@@ -61,19 +64,7 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
-repositories {
-    mavenCentral()
-}
-buildscript {
-    repositories {
-        jcenter()
-    }
-    dependencies {
-        classpath 'com.github.dcendents:android-maven-gradle-plugin:1.4.1'
-        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7.3'
-    }
-}
-apply from: './install.gradle'
 
-// ./gradle clean build install
-// ./gradle bintrayUpload
+apply from: 'https://raw.githubusercontent.com/blundell/release-android-library/master/android-release-aar.gradle'
+
+//./gradlew clean build generateRelease

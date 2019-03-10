@@ -25,20 +25,20 @@ class VerticalSlider : View {
             progress = a.getInteger(R.styleable.VerticalSlider_vs_progress, progress)
             thread {
                 if (iconHiResId != -1)
-                    hiIcon = getBitmapFromVectorDrawable(context, iconHiResId)
+                    iconHigh = getBitmapFromVectorDrawable(context, iconHiResId)
                 if (iconMedResId != -1)
-                    midIcon = getBitmapFromVectorDrawable(context, iconMedResId)
+                    iconMedium = getBitmapFromVectorDrawable(context, iconMedResId)
                 if (iconLoResId != -1)
-                    lowIcon = getBitmapFromVectorDrawable(context, iconLoResId)
+                    iconLow = getBitmapFromVectorDrawable(context, iconLoResId)
             }
         } finally {
             a.recycle()
         }
     }
 
-    var hiIcon: Bitmap? = null
-    var midIcon: Bitmap? = null
-    var lowIcon: Bitmap? = null
+    var iconHigh: Bitmap? = null
+    var iconMedium: Bitmap? = null
+    var iconLow: Bitmap? = null
 
     private val iconWidth = dpToPx(36)
     private val iconRect: RectF = RectF()
@@ -99,16 +99,16 @@ class VerticalSlider : View {
         canvas.drawRect(layoutRect, layoutPaint)
         canvas.drawRect(progressRect, progressPaint)
 
-        if (lowIcon != null && midIcon != null && hiIcon != null) {
+        if (iconLow != null && iconMedium != null && iconHigh != null) {
             when {
                 progress < max / 3 -> {
-                    canvas.drawBitmap(lowIcon, null, iconRect, null)
+                    canvas.drawBitmap(iconLow, null, iconRect, null)
                 }
                 progress < max * 2 / 3 -> {
-                    canvas.drawBitmap(midIcon, null, iconRect, null)
+                    canvas.drawBitmap(iconMedium, null, iconRect, null)
                 }
                 else -> {
-                    canvas.drawBitmap(hiIcon, null, iconRect, null)
+                    canvas.drawBitmap(iconHigh, null, iconRect, null)
                 }
             }
         }

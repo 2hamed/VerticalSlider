@@ -5,6 +5,8 @@ import android.graphics.*
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
+import androidx.annotation.DrawableRes
+import androidx.annotation.IdRes
 import androidx.core.content.ContextCompat
 import kotlin.concurrent.thread
 
@@ -23,6 +25,7 @@ class VerticalSlider : View {
             val iconHiResId = a.getResourceId(R.styleable.VerticalSlider_vs_iconHigh, -1)
             max = a.getInteger(R.styleable.VerticalSlider_vs_max, max)
             progress = a.getInteger(R.styleable.VerticalSlider_vs_progress, progress)
+            cornerRadius = a.getDimension(R.styleable.VerticalSlider_vs_cornerRadius, cornerRadius)
             thread {
                 if (iconHiResId != -1)
                     iconHigh = getBitmapFromVectorDrawable(context, iconHiResId)
@@ -40,23 +43,11 @@ class VerticalSlider : View {
     var iconMedium: Bitmap? = null
     var iconLow: Bitmap? = null
 
-    private val iconWidth = dpToPx(36)
-    private val iconRect: RectF = RectF()
-    private val layoutRect: RectF = RectF(0f, 0f, measuredWidth.toFloat(), measuredHeight.toFloat())
-    private val layoutPaint = Paint().apply {
-        color = Color.parseColor("#aa787878")
-        isAntiAlias = true
-    }
-    private val progressRect: RectF = RectF(0f, 0f, measuredWidth.toFloat(), measuredHeight.toFloat())
-    private val progressPaint = Paint().apply {
-        color = Color.WHITE
-        isAntiAlias = true
-    }
-    private val radius = dpToPx(15).toFloat()
-
-    private val path = Path()
-
-    var onProgressChangeListener: OnSliderProgressChangeListener? = null
+    var cornerRadius = dpToPx(10).toFloat()
+        set(value) {
+            field = value
+            invalidate()
+        }
     var max: Int = 10
     var progress: Int = 5
         set(value) {
@@ -73,6 +64,35 @@ class VerticalSlider : View {
             )
             invalidate()
         }
+    var onProgressChangeListener: OnSliderProgressChangeListener? = null
+
+    fun setIconHighResource(@DrawableRes resId: Int) {
+        iconHigh = getBitmapFromVectorDrawable(context, resId)
+    }
+
+    fun setIconMediumResource(@DrawableRes resId: Int) {
+        iconMedium = getBitmapFromVectorDrawable(context, resId)
+    }
+
+    fun setIconLowResource(@DrawableRes resId: Int) {
+        iconLow = getBitmapFromVectorDrawable(context, resId)
+    }
+
+
+    private val iconWidth = dpToPx(36)
+    private val iconRect: RectF = RectF()
+    private val layoutRect: RectF = RectF(0f, 0f, measuredWidth.toFloat(), measuredHeight.toFloat())
+    private val layoutPaint = Paint().apply {
+        color = Color.parseColor("#aa787878")
+        isAntiAlias = true
+    }
+    private val progressRect: RectF = RectF(0f, 0f, measuredWidth.toFloat(), measuredHeight.toFloat())
+    private val progressPaint = Paint().apply {
+        color = Color.WHITE
+        isAntiAlias = true
+    }
+    private val path = Path()
+
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
@@ -90,7 +110,7 @@ class VerticalSlider : View {
                 measuredWidth / 2f + iconWidth / 2,
                 measuredHeight / 2f + iconWidth / 2
             )
-            path.addRoundRect(layoutRect, radius, radius, Path.Direction.CW)
+            path.addRoundRect(layoutRect, cornerRadius, cornerRadius, Path.Direction.CW)
         }
     }
 

@@ -15,9 +15,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:vs_iconHigh="@drawable/volume_high"
-        app:vs_iconLow="@drawable/volume_low"
-        app:vs_iconMedium="@drawable/volume_medium"
+        app:vs_cornerRadius="10dp"
+        app:vs_iconHigh="@drawable/ic_volume_high_grey600_36dp"
+        app:vs_iconLow="@drawable/ic_volume_low_grey600_36dp"
+        app:vs_iconMedium="@drawable/ic_volume_medium_grey600_36dp"
         app:vs_max="100"
         app:vs_progress="10" />
 

@@ -9,22 +9,42 @@ Have you ever seen those sleek volume and light sliders for iOS? Well here they 
 It allows to set 3 different icons for different states of the slide: low, medium and high.
 
 ## Usage
+
 As always it is available through jCenter:
 
 ```groovy
-implementation 'com.hmomeni.verticalslider:verticalslider:0.1.5'
+implementation 'com.hmomeni.verticalslider:verticalslider:0.2.0'
 ```
 
 There are a number of properties which can be set either in xml or code:
 
-```
-// Bitmaps for displaying different states of the slider
+### Icons
+
+You can set icons directly by setting Bitmap values to them or you can use any of the helper methods to pass in a Resource Id:
+
+```kotlin
 iconHigh: Bitmap
 iconMedium: Bitmap
 iconLow: Bitmap
 
+verticalSlider.setIconHighResourse(R.drawable.ic_volume_high)
+verticalSlider.setIconMediumResourse(R.drawable.ic_volume_medium)
+verticalSlider.setIconLowResourse(R.drawable.ic_volume_low)
+```
+
+### Max & Progress
+
+`max` can be any integer larger than 0 and `progress` should be: 0 <= `progress` <= max
+
+```
 max: Int // the maximum amount that the slider will allow
 progress: Int // the current progress of slider
+```
+
+### Other properties
+
+```kotlin
+verticalSlider.cornerRadius = dpToPx(10).toFloat()
 
 // this gets called in every update of the progress
 verticalSlider.onProgressChangeListener = object : VerticalSlider.OnSliderProgressChangeListener {
@@ -39,6 +59,7 @@ verticalSlider.onProgressChangeListener = object : VerticalSlider.OnSliderProgre
         android:id="@+id/verticalSlider"
         android:layout_width="120dp"
         android:layout_height="250dp"
+        app:vs_cornerRadius="10dp"
         app:vs_iconHigh="@drawable/volume_high"
         app:vs_iconLow="@drawable/volume_low"
         app:vs_iconMedium="@drawable/volume_medium"
